@@ -1,0 +1,8 @@
+#entrada {
+  background-color: rgb(159, 255, 255);
+  border-radius: 10px;
+}
+
+#entrada * {
+  padding: 10px;
+}

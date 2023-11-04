@@ -1,0 +1,11 @@
+<div id="listado">
+  <h3>Listado de entradas al blog:</h3>
+  <app-entrada
+    *ngFor="let entrada of listadoEntradas"
+    [entrada]="entrada"
+    (click)="mostrarTitulo(entrada.title)" 
+  ></app-entrada> 
+  <!--[entrada]="entrada" es Data binding enlazando del padre a el componente hijo-->
+  <!--Se asocia cada variable entrada de la lista a propiedad entrada de entrada.component-->
+  <!--Creando por cada elemento del array lo que hay en el template de entrada.component-->
+</div>

@@ -1,0 +1,7 @@
+<ul id="menu">
+    <li><span> </span></li>
+    <li ><span [routerLink]="['/listado']">Blog</span></li>
+    <li ><span [routerLink]="['/nosotros']">Acerca de Nosotros</span></li>
+    <li *ngIf="miToken == 0" class="acceso"><span [routerLink]="['/login']">Login</span></li>
+    <li *ngIf="miToken != 0" class="acceso"><span><strong>Usuario: {{nombreUsuario}}</strong></span></li>
+</ul>

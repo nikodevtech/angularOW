@@ -1,0 +1,52 @@
+<div id="contenedor" class="form">
+  <form (ngSubmit)="submit()" #usuarioForm="ngForm">
+    <!-- Este formulario se envía al método 'submit()' cuando se hace clic 
+        en el botón de enviar. La directiva '#usuarioForm' crea una referencia 
+        al formulario para acceder a su estado y validación. -->
+    <div class="form-group">
+      <label for="usuario">Nombre:</label>
+      <!-- Etiqueta para el campo de entrada de texto del nombre. -->
+      <input
+        type="text"
+        [(ngModel)]="usuario.nombre"
+        name="nombre"
+        #nombre="ngModel"
+        required
+      />
+      <!-- Campo de entrada de texto enlazado al atributo 'nombre' del objeto 'usuario'.
+        La directiva '#nombre' crea una referencia al campo de entrada para validación.
+        - 'required' indica que este campo es obligatorio. -->
+      <div *ngIf="nombre.invalid && nombre.dirty" class="alert">
+        <!-- Se muestra un mensaje de error si el campo es inválido y ha sido modificado 
+            por el usuario. -->
+        <div *ngIf="contrasegna.errors?.['required']">Campo requerido</div>
+        <!-- Muestra un mensaje si el campo es requerido pero está vacío. -->
+      </div>
+    </div>
+    <div class="form-group">
+      <label for="contrasegna">Contraseña:</label>
+      <!-- Etiqueta para el campo de entrada de contraseña. -->
+      <input
+        type="password"
+        [(ngModel)]="usuario.contrasegna"
+        name="contrasegna"
+        #contrasegna="ngModel"
+        required
+        minlength="4"
+      />
+      <!-- Campo de entrada de contraseña enlazado al atributo 'contrasegna' del objeto 'usuario'.
+        La directiva '#contrasegna' crea una referencia al campo de entrada para validación.
+        - 'required' indica que este campo es obligatorio.
+        - 'minlength' establece la longitud mínima requerida para el valor del campo. -->
+      <div *ngIf="contrasegna.invalid && contrasegna.dirty" class="alert">
+        <!-- Se muestra un mensaje de error si el campo es inválido y ha sido modificado por el usuario. -->
+        <div *ngIf="contrasegna.errors?.['required']">Campo requerido</div>
+        <!-- Muestra un mensaje si el campo es requerido pero está vacío. -->
+        <div *ngIf="contrasegna.errors?.['minlength']">Mínimo 4 caracteres</div>
+        <!-- Muestra un mensaje si la longitud del campo es menor que 4 caracteres. -->
+      </div>
+    </div>
+    <button type="submit" [disabled]="!usuarioForm.form.valid">Entrar</button>
+    <!-- Este botón de envío solo se habilitará si el formulario es válido. -->
+  </form>
+</div>
